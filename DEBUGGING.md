@@ -1,0 +1,9 @@
+1. Jag undersökte fel 4 gällande om programmet krashade vid felaktig deltagarantal om användaren skrivr six eller något annat som inte är ett heltal. 
+2. Hur jag såg det var genom att testa applikationen och se vad som hände om man skrev till exempel six när applikationen frågar om hur många participants. Programmet krashasde och felet blev markerad vilket gjorde det väldigt tydligt vad som behövde ändras. 
+3. Felet gav att programmet kraschade eftersom texten inte fick att omvandla till ett heltal. Därför kunde programmet inte fortsätta med bokningen.
+4. Det resultatet jag skulle ha fått med hanteringen av de felaktiga inmatning utan att krascha skulle t.ex kunna vara att användaren kan återvända till menyn, eller försöka en gång till direkt efter.
+5. I BookingConsole.cs fanns felet och det var för att int.Parse försökte omvandla det användaren skrev till ett heltal.
+6. Den försökte omvandla användarens inmatning till ett heltal utan att kontrollera om det gick. Six eller några andra bokstäver är inte ett giltigt heltal. Med int.parse så kan det leda till att programmet avslutas.
+7. Jag ändrade så programmet kan kontrollera inmatningen som kom om det var ett heltal innan det används och om det inte var det. Då behöver inte programmet bli tvingad till att krascha.
+8. Jag öppnade konsolapplikationen igen och gjorde en create skrev in allt tills jag kom till participants igen och testa skriva "six" för att se om problemet fixades eller inte. Den skickade mig tillbaka till menyn vilket betydde att den fungerade. 
+9. Jag gick igenom de enhetstester som finns i BookingServiceTests.cs och såg att det inte finns något automatiserad test för fel 4. 
