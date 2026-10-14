@@ -15,9 +15,6 @@ public class BookingService(IBookingRepository repository)
 
     public IReadOnlyList<Booking> GetActiveBookings()
     {
-        // This method has not been completed.
-        
-
       List<Booking> activeBookings = [];
 
         foreach (var booking in repository.GetAll())
