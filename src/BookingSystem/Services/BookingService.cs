@@ -16,7 +16,32 @@ public class BookingService(IBookingRepository repository)
     public IReadOnlyList<Booking> GetActiveBookings()
     {
         // This method has not been completed.
-        return repository.GetAll();
+        
+
+      List<Booking> activeBookings = [];
+
+        foreach (var booking in repository.GetAll())
+        {
+            if (!booking.IsCancelled)
+            { 
+                activeBookings.Add(booking);
+            }
+        }
+
+        activeBookings.Sort((a, b) =>
+        {
+            int dateComparison = a.Date.CompareTo(b.Date);
+            if (dateComparison != 0)
+            {
+                return dateComparison;
+            }
+            return a.StartTime.CompareTo(b.StartTime);
+        });
+
+        return activeBookings;
+
+
+        
     }
 
     public IReadOnlyList<Booking> Search(string searchTerm)
@@ -26,6 +51,8 @@ public class BookingService(IBookingRepository repository)
                 !booking.IsCancelled &&
                 booking.CustomerName.Contains(searchTerm))
             .ToList();
+        
+
     }
 
     public BookingResult Create(Booking booking)
@@ -46,7 +73,11 @@ public class BookingService(IBookingRepository repository)
 
     public BookingResult Cancel(int bookingId)
     {
+
         throw new NotImplementedException();
+
+
+
     }
 
     private BookingResult Validate(Booking booking)
